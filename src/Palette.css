@@ -1,0 +1,8 @@
+.Palette {
+    height: 100vh;
+}
+
+/* saving 10% of window space for the navbar and the footer */
+.Palette-colors {
+    height: 90%;
+}
