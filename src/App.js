@@ -1,12 +1,13 @@
-import Palette from './Palette';
-import seedColors from './seedColors';
-import { generatePalette } from './colorHelpers';
+import { Route, Routes } from 'react-router-dom';
+import VerifyPathById from './VerifyPathById';
 
 function App() {
   return (
     <div className="App">
-      {/* You can change from the objects list from seedColors */}
-      <Palette palette={generatePalette(seedColors[4])} />
+      <Routes>
+        <Route path='/' element={<h1>Hi!</h1>} />
+        <Route path='palette/:id' element={<VerifyPathById />} />
+      </Routes>
     </div>
   );
 }
