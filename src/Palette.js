@@ -25,7 +25,7 @@ class Palette extends Component {
         const colorBoxes = colors[this.state.level].map(c => <ColorBox name={c.name} backgroundColor={c[this.state.format]} />)
         return (
             <div className="Palette">
-                <Navbar level={this.state.level} format={this.props.format} changeLevel={this.changeLevel} changeFormat={this.changeFormat} />
+                <Navbar level={this.state.level} format={this.state.format} changeLevel={this.changeLevel} changeFormat={this.changeFormat} />
                 <div className="Palette-colors">
                     {/* Bunch of color boxes */}
                     { colorBoxes }

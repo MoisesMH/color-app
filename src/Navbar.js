@@ -3,11 +3,19 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css"
 
 import "./Navbar.css"
-import React from "react";
-import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+import React, { useState } from "react";
+import { Select, MenuItem, FormControl, InputLabel, Snackbar, IconButton } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close'
 
 function Navbar({ level, format, changeLevel, changeFormat }) {
+    const [toggleOpen, setToggleOpen] = useState(false)
+
+    const closeSnackbar = () => {
+        setToggleOpen(false)
+    }
+
     const handleChange = (evt) => {
+        setToggleOpen(true)
         changeFormat(evt.target.value)
     }
 
@@ -44,6 +52,27 @@ function Navbar({ level, format, changeLevel, changeFormat }) {
                         <MenuItem value="rgba">RGBA - rgba(255,255,255,1.0)</MenuItem>
                     </Select>
                 </FormControl>
+                <Snackbar 
+                    anchorOrigin={{vertical: "bottom", horizontal: "left"}}
+                    open={toggleOpen}
+                    autoHideDuration={3000}
+                    message={<span id="message-id">Format changed to {format.toUpperCase()}</span>}
+                    // For accesibility purposes
+                    ContentProps={{
+                        "aria-describedby": "message-id"
+                    }}
+                    onClose={closeSnackbar}
+                    action={[
+                        <IconButton 
+                            onClick={closeSnackbar} 
+                            color='inherit' 
+                            key="close" 
+                            aria-label="close"
+                        >
+                            <CloseIcon />
+                        </IconButton>
+                    ]}
+                />
             </div>
         </header>
     )
