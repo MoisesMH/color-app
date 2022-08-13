@@ -4,8 +4,13 @@ import "rc-slider/assets/index.css"
 
 import "./Navbar.css"
 import React from "react";
+import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
-function Navbar({ level, changeLevel }) {
+function Navbar({ level, format, changeLevel, changeFormat }) {
+    const handleChange = (evt) => {
+        changeFormat(evt.target.value)
+    }
+
     return (
         <header className="Navbar">
             <div className="Navbar-logo">
@@ -24,6 +29,21 @@ function Navbar({ level, changeLevel }) {
                         onChange={changeLevel}
                     />
                 </div>
+            </div>
+            <div className="select-container">
+                <FormControl variant="filled" sx={{ m: 1, minWidth: 150 }}>
+                    <InputLabel id="color-format-label">Color Format</InputLabel>
+                    <Select
+                        labelId="color-format-label"
+                        id="color-format"
+                        onChange={handleChange}
+                        value={format}
+                    >
+                        <MenuItem value="hex">HEX - #ffffff</MenuItem>
+                        <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
+                        <MenuItem value="rgba">RGBA - rgba(255,255,255,1.0)</MenuItem>
+                    </Select>
+                </FormControl>
             </div>
         </header>
     )
