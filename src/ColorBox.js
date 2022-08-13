@@ -13,9 +13,9 @@ class ColorBox extends Component {
 
     // Copy to clipboard with a single command
     // async copyToClipboard() {
-    //     await navigator.clipboard.writeText(this.props.color)
+    //     await navigator.clipboard.writeText(this.props.hex)
     // }
-    // <div className="ColorBox" style={{ backgroundColor: this.props.color }} onClick={this.copyToClipboard}><div>
+    // <div className="ColorBox" style={{ backgroundColor: this.props.hex }} onClick={this.copyToClipboard}><div>
     // Another way to copy to clipboard is using the library react-copy-to-clipboard
 
     changeCopyState() {
@@ -26,15 +26,15 @@ class ColorBox extends Component {
 
     render() {
         return (
-            <CopyToClipboard text={this.props.color} onCopy={this.changeCopyState}>
-                <div className="ColorBox" style={{ backgroundColor: this.props.color }}>
+            <CopyToClipboard text={this.props.hex} onCopy={this.changeCopyState}>
+                <div className="ColorBox" style={{ backgroundColor: this.props.hex }}>
                     <div 
-                        style={{ backgroundColor: this.props.color }}
+                        style={{ backgroundColor: this.props.hex }}
                         className={`copy-overlay ${this.state.copied && "show"}`}
                     />
                     <div className={`copy-msg ${this.state.copied && "show"}`}>
                         <h1>Copied!</h1>
-                        <p>{ this.props.color }</p>
+                        <p>{ this.props.hex }</p>
                     </div>
                     <div className="copy-container">
                         <div className="box-content">
