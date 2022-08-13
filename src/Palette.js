@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import ColorBox from "./ColorBox";
-import "./Palette.css"
 // To get the slider working
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css"
+// Because of specificity, we add the styling from the slider first
+import React, { Component } from "react";
+import ColorBox from "./ColorBox";
+import "./Palette.css"
 
 class Palette extends Component {
     constructor(props) {
@@ -22,6 +23,7 @@ class Palette extends Component {
         return (
             <div className="Palette">
                 <Slider 
+                    className="slider"
                     defaultValue={this.state.level}
                     min={100}
                     max={900}

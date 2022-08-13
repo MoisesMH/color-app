@@ -35,7 +35,7 @@
 
 .box-content {
     position: absolute;
-    /* width: 100%; */
+    width: 100%;
     left: 0px;
     bottom: 0px;
     padding: 10px;
@@ -84,7 +84,7 @@
 /* For the msg in the overlay */
 
 .copy-msg {
-    position: fixed;
+    position: absolute;
     left: 0;
     right: 0;
     top: 0;
@@ -100,6 +100,7 @@
 }
 
 .copy-msg.show {
+    position: fixed;
     opacity: 1;
     transform: scale(1);
     z-index: 25;
