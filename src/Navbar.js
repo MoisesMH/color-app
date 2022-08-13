@@ -6,6 +6,7 @@ import "./Navbar.css"
 import React, { useState } from "react";
 import { Select, MenuItem, FormControl, InputLabel, Snackbar, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close'
+import { Link } from "react-router-dom";
 
 function Navbar({ level, format, changeLevel, changeFormat }) {
     const [toggleOpen, setToggleOpen] = useState(false)
@@ -22,7 +23,7 @@ function Navbar({ level, format, changeLevel, changeFormat }) {
     return (
         <header className="Navbar">
             <div className="Navbar-logo">
-                <a href="#">reactcolorpicker</a>
+                <Link to="/">reactcolorpicker</Link>
             </div>
             <div className="Navbar-options">
                 <span>Level: {level}</span>
