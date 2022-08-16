@@ -55,7 +55,7 @@ const Main = styled('div')({
     }
 })
 
-function MiniPalette({ paletteName, emoji, colors }){
+function MiniPalette({ paletteName, emoji, colors, handleClick }){
     const miniColorBoxes = colors.map(color => (
         <div 
             className={classes.miniColor}
@@ -64,7 +64,7 @@ function MiniPalette({ paletteName, emoji, colors }){
         />
     ))
     return (
-        <Main className={classes.main}>
+        <Main className={classes.main} onClick={handleClick}>
             <div className={classes.colors}>{ miniColorBoxes }</div>
             <h5 className={classes.title}>
                 {paletteName} <span className={classes.emoji}>{ emoji }</span>

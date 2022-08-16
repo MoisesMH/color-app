@@ -2,6 +2,7 @@ import React from "react"
 // import { Link } from "react-router-dom"
 import MiniPalette from "./MiniPalette"
 import { styled } from "@mui/material"
+import { useNavigate } from "react-router-dom";
 
 const PREFIX = 'PaletteList';
 const classes = {
@@ -47,10 +48,12 @@ function PaletteList({ palettes }) {
     // const pals = palettes.map(pal => (
     //     <p><Link to={`/palette/${pal.id}`}>{pal.paletteName}</Link></p>
     // ))
+    const navigate = useNavigate()
 
-    const minipals = palettes.map(pal => (
-        <MiniPalette {...pal} />
-    ))
+    const minipals = palettes.map(pal => {
+        const goToPalette = () => navigate(`/palette/${pal.id}`)
+        return <MiniPalette {...pal} handleClick={goToPalette} />
+    })
 
     return (
         <Root className="PaletteList">
