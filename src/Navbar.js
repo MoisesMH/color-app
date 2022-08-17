@@ -8,7 +8,7 @@ import { Select, MenuItem, FormControl, InputLabel, Snackbar, IconButton } from 
 import CloseIcon from '@mui/icons-material/Close'
 import { Link } from "react-router-dom";
 
-function Navbar({ level, format, changeLevel, changeFormat }) {
+function Navbar({ level, format, changeLevel, changeFormat, showLevels }) {
     const [toggleOpen, setToggleOpen] = useState(false)
 
     const closeSnackbar = () => {
@@ -25,20 +25,22 @@ function Navbar({ level, format, changeLevel, changeFormat }) {
             <div className="Navbar-logo">
                 <Link to="/">reactcolorpicker</Link>
             </div>
-            <div className="Navbar-options">
-                <span>Level: {level}</span>
-                <div className="slider">
-                    <Slider
-                        className="slider"
-                        defaultValue={level}
-                        min={100}
-                        max={900}
-                        // Necessarily 100 because palette colors increase by 100
-                        step={100}
-                        onChange={changeLevel}
-                    />
+            {showLevels &&
+                <div className="Navbar-options">
+                    <span>Level: {level}</span>
+                    <div className="slider">
+                        <Slider
+                            className="slider"
+                            defaultValue={level}
+                            min={100}
+                            max={900}
+                            // Necessarily 100 because palette colors increase by 100
+                            step={100}
+                            onChange={changeLevel}
+                        />
+                    </div>
                 </div>
-            </div>
+            }
             <div className="select-container">
                 <FormControl variant="filled" sx={{ m: 1, minWidth: 150 }}>
                     <InputLabel id="color-format-label">Color Format</InputLabel>

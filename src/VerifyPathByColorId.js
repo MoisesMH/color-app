@@ -14,7 +14,7 @@ function VerifyPathByColorId({ palettes }) {
         if(foundColorIndex === -1) return <Navigate to={`/palette/${paletteId}`} replace />
         colorSet.add(colors[i][foundColorIndex])
     }
-    return <SingleColorPalette colors={colorSet} />
+    return <SingleColorPalette {...generatePalette(palettes[foundPaletteIndex])} colors={colorSet} />
 }
 
 export default VerifyPathByColorId
