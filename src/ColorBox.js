@@ -1,3 +1,4 @@
+import chroma from "chroma-js";
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Link } from "react-router-dom";
@@ -26,6 +27,10 @@ class ColorBox extends Component {
     }
 
     render() {
+        // these results are used to decide if the font color gets dark or white because of the luminance
+        // In order to see them clearly
+        const isDarkColor = chroma(this.props.backgroundColor).luminance() <= 0.08
+        const isLightColor = chroma(this.props.backgroundColor).luminance() >= 0.5
         return (
             <CopyToClipboard text={this.props.backgroundColor} onCopy={this.changeCopyState}>
                 <div className="ColorBox" style={{ backgroundColor: this.props.backgroundColor }}>
@@ -35,17 +40,17 @@ class ColorBox extends Component {
                     />
                     <div className={`copy-msg ${this.state.copied && "show"}`}>
                         <h1>Copied!</h1>
-                        <p>{ this.props.backgroundColor }</p>
+                        <p className={isLightColor && "dark-text"}>{ this.props.backgroundColor }</p>
                     </div>
                     <div className="copy-container">
                         <div className="box-content">
-                            <span>{this.props.name}</span>
+                            <span className={isDarkColor && "light-text"}>{this.props.name}</span>
                         </div>
-                        <Button className="copy-button" text="Copy" />
+                        <Button className={`copy-button ${isLightColor && "dark-text"}`} text="Copy" />
                     </div>
                     { this.props.showLink &&
                         <Link to={this.props.moreUrl} onClick={(e) => e.stopPropagation()} >
-                            <span className="see-more">More</span>
+                            <span className={`see-more ${isLightColor && "dark-text"}`}>MORE</span>
                         </Link>
                     }
                 </div>
