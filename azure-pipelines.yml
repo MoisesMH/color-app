@@ -32,8 +32,9 @@ stages:
 
     steps:
     - task: NodeTool@0
+      displayName: 'Set up Node.js 16.x.x LTS'
       inputs:
-        versionSpec: '>=16.x.x'
+        versionSpec: '=16.x.x'
     
     # - script: |
     #     npm ci
@@ -59,9 +60,16 @@ stages:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build'
         includeRootFolder: false
         archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        archiveFile: $(System.DefaultWorkingDirectory)/build/$(Build.BuildId).zip
         replaceExistingArchive: true
 
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)/build'
+        Contents: '$(System.DefaultWorkingDirectory)/build/$(Build.BuildId).zip'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+        OverWrite: true
+    
     # Deprecated
     # - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
     #   artifact: drop
