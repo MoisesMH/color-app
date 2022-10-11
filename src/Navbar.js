@@ -23,7 +23,7 @@ function Navbar({ level, format, changeLevel, changeFormat, showLevels }) {
     return (
         <header className="Navbar">
             <div className="Navbar-logo">
-                <Link to="/">reactcolorpicker</Link>
+                <Link to="/">React Color Picker!</Link>
             </div>
             {showLevels &&
                 <div className="Navbar-options">
