@@ -31,6 +31,16 @@ stages:
     #  vmImage: $(vmImageName)
 
     steps:
+    - task: CmdLine@2
+      displayName: 'Update system, its dependencies and install zip utility.'
+      inputs:
+        script: |
+          apt-get update \
+              && apt-get install -y zip \
+              && apt-get autoremove \
+              && apt-get clean \
+              && rm -rf /var/lib/apt/lists/*
+    
     - task: NodeTool@0
       displayName: 'Set up Node.js 16.x.x LTS'
       inputs:
@@ -64,6 +74,7 @@ stages:
         replaceExistingArchive: true
 
     - task: CopyFiles@2
+      displayName: 'Copy Files to Publish Artifacts Directory'
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)/build'
         Contents: '$(System.DefaultWorkingDirectory)/build/$(Build.BuildId).zip'
