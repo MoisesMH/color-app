@@ -21,13 +21,16 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
+  # Self-hosted agent pool name
+  agentpool: 'DockerPool_1'
+
 stages:
 - stage: Build
   displayName: Build stage
   jobs:
   - job: Build
     displayName: Build
-    pool: DockerPool_1
+    pool: $(agentpool)
     #  vmImage: $(vmImageName)
 
     steps:
@@ -101,8 +104,8 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     environment: $(prodEnvironmentName)
-    pool:
-      vmImage: $(vmImageName)
+    pool: $(agentpool)
+    #   vmImage: $(vmImageName)
     strategy:
       runOnce:
         deploy:
