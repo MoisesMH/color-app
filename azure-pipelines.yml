@@ -117,12 +117,6 @@ stages:
               artifactName: '$(Build.BuildId)'
               targetPath: '$(Pipeline.Workspace)'
 
-          - task: Npm@1
-            displayName: 'Install Serve to deploy the build'
-            inputs:
-              command: 'custom'
-              customCommand: 'install -g serve'
-
           - task: AzureRmWebAppDeployment@4
             displayName: 'Azure App Service Deploy: '
             inputs:
@@ -131,7 +125,7 @@ stages:
               WebAppName: $(webAppName)
               packageForLinux: '$(Pipeline.Workspace)/$(Build.BuildId).zip'
               RuntimeStack: 'NODE|16-lts'
-              StartupCommand: 'serve -s'
+              StartupCommand: 'npm install -g serve && serve -s'
               # ScriptType: 'Inline Script'
               # InlineScript: |
               #   npm install
